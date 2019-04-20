@@ -3,3 +3,9 @@ exports.proyectosInicio = (req, res) => {
           nombrePagina: 'BinwebTask'
      });
 }
+
+exports.formularioProyecto = (req, res) => {
+     res.render('nuevoProyecto', {
+          nombrePagina: 'Nuevo Proyecto'
+     })
+}
