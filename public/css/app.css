@@ -58,7 +58,6 @@ body {
 .campo input[type="text"],
 .campo input[type="password"] {
     height: 3rem;
-    border: 0;
     flex: 1;
     border: 1px solid #455A64;
     border-radius: 5rem;

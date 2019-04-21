@@ -1,15 +1,24 @@
-exports.proyectosInicio = (req, res) => {
+const Proyectos = require('../models/Proyectos');
+
+
+exports.proyectosInicio = async (req, res) => {
+     const proyectos = await Proyectos.findAll();
+
      res.render('index', {
-          nombrePagina: 'BinwebTask'
+          nombrePagina: 'BinwebTask',
+          proyectos
      });
 }
 
-exports.formularioProyecto = (req, res) => {
+exports.formularioProyecto = async (req, res) => {
+     const proyectos = await Proyectos.findAll();
      res.render('nuevoProyecto', {
-          nombrePagina: 'Nuevo Proyecto'
+          nombrePagina: 'Nuevo Proyecto',
+          proyectos
      })
 }
-exports.nuevoProyecto = (req, res) => {
+exports.nuevoProyecto = async (req, res) => {
+     const proyectos = await Proyectos.findAll();
      // enviar a la consola lo que el usuario escriba.
      // console.log(req.body);
 
@@ -18,7 +27,7 @@ exports.nuevoProyecto = (req, res) => {
 
      let errores = [];
 
-     if (!nombre) {
+     if(!nombre) {
           errores.push({'texto': 'Agrega un nombre al proyecto'})
      }
 
@@ -26,10 +35,37 @@ exports.nuevoProyecto = (req, res) => {
      if(errores.length > 0) {
           res.render('nuevoProyecto', {
                nombrePagina : 'Nuevo Proyecto',
-               errores
+               errores,
+               proyectos
           })
      } else {
           // no hay errores
           // Insertar en la BD.
+          
+          const proyecto = await Proyectos.create({ nombre });
+          res.redirect('/');
      }
+}
+
+exports.proyectoPorUrl = async (req, res) => {
+     const proyectos = await Proyectos.findAll();
+
+     const proyecto = await Proyectos.findOne({
+          where: {
+               url: req.params.url
+          }
+     });
+
+     if (!proyecto) return next();
+
+     // console.log(proyecto);
+
+     // res.send('OK');
+
+     // render a la vista
+     res.render('tareas', {
+          nombrePagina: 'Tareas del Proyecto',
+          proyecto,
+          proyectos
+     })
 }
