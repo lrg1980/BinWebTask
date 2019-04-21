@@ -4,7 +4,9 @@
   "description": "Proyecto BinwebTak con Node y MVC",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js",
+    "dev": "nodemon ./index.js",
+    "start": "concurrently \"npm run dev\" \"npm run watch\" ",
+    "watch": "webpack --w --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +24,7 @@
   },
   "homepage": "https://github.com/lrg1980/BinWebTask#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
@@ -29,13 +32,15 @@
     "pug": "^2.0.3",
     "sequelize": "^5.7.1",
     "shortid": "^2.2.14",
-    "slug": "^1.1.0"
+    "slug": "^1.1.0",
+    "sweetalert2": "^8.8.5"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-loader": "^8.0.5",
     "nodemon": "^1.18.11",
-    "webpack": "^4.30.0"
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
   }
 }
