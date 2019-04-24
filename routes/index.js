@@ -4,6 +4,7 @@ const router = express.Router();
 const { body } = require('express-validator/check');
 // Importar el controlador
 const proyectosController = require('../controllers/proyectosController');
+const tareasController = require('../controllers/tareasController');
 
 module.exports = function () {
      // ruta generales
@@ -25,6 +26,18 @@ module.exports = function () {
      // Chequeo de nombre en campo formulario
           body('nombre').not().isEmpty().trim().escape(), 
           proyectosController.actualizarProyecto);
+     
+     //Eliminar Proyecto
+     router.delete('/proyectos/:url', proyectosController.eliminarProyecto);
+
+     // Tareas
+     router.post('/proyectos/:url', tareasController.agregarTarea);
+     
+     // Actualizar Tarea
+     router.patch('/tareas/:id', tareasController.actualizarTarea);
+
+     // Eliminar Tarea
+     router.delete('/tareas/:id', tareasController.eliminarTarea);
      
      return router;
 }
