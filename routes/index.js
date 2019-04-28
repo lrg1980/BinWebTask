@@ -6,6 +6,7 @@ const { body } = require('express-validator/check')
 const proyectosController = require('../controllers/proyectosController')
 const tareasController = require('../controllers/tareasController')
 const usuariosController = require('../controllers/usuariosController')
+const authController = require('../controllers/authController')
 
 module.exports = function () {
   // ruta generales
@@ -46,7 +47,7 @@ module.exports = function () {
 
   // Iniciar sesion
   router.get('/iniciar-sesion', usuariosController.formIniciarSesion)
-  // router.post('/crear-cuenta', usuariosController.crearCuenta)
+  router.post('/iniciar-sesion', authController.autenticarUsuario)
 
   return router
 }

@@ -7,8 +7,10 @@ exports.formCrearCuenta = (req, res) => {
 }
 
 exports.formIniciarSesion = (req, res) => {
+  const { error } = res.locals.mensajes
   res.render('iniciarSesion', {
-    nombrePagina: 'Inicia sesion en BinwebTask'
+    nombrePagina: 'Inicia sesion en BinwebTask',
+    error
   })
 }
 
