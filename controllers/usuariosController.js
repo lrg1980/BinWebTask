@@ -6,6 +6,12 @@ exports.formCrearCuenta = (req, res) => {
   })
 }
 
+exports.formIniciarSesion = (req, res) => {
+  res.render('iniciarSesion', {
+    nombrePagina: 'Inicia sesion en BinwebTask'
+  })
+}
+
 exports.crearCuenta = async (req, res) => {
   // leer los datos
   const { email, password } = req.body

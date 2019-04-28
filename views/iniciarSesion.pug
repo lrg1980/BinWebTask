@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+html(lang="en")
+     head
+          include partials/header          
+     body.login
+          .contenedor-formulario   
+               h1 Inicia sesión en BinWebTask
+
+               form#formulario.caja.caja-login(method="POST" action="/iniciar-sesion")
+                    .campo    
+                         label(for="email") Correo electrónico:
+                         input(type="text" name="email" placeholder="Tu correo electrónico"  value= email)
+                    .campo
+                         label(for="password") Contraseña:  
+                         input(type="password" name="password" placeholder="Tu contraseña" value= password )
+                    .campo.enviar
+                         input.boton(type="submit" value="Iniciar sesion")
+                    .campo
+                         a(href="/crear-cuenta") ¿Aún no tienes cuenta? Crea una gratis
+          
+          script(src="/dist/bundle.js")
+
