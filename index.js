@@ -68,3 +68,5 @@ app.use((req, res, next) => {
 app.use('/', routes())
 
 app.listen(7500)
+
+// require('./handlers/email')
