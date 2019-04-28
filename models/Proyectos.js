@@ -1,25 +1,25 @@
-const Sequelize = require('sequelize');
-const db = require('../config/db');
-const slug = require('slug');
-const shortid = require('shortid');
+const Sequelize = require('sequelize')
+const db = require('../config/db')
+const slug = require('slug')
+const shortid = require('shortid')
 
 const Proyectos = db.define('proyectos', {
-     id: {
-          type: Sequelize.INTEGER,
-          primaryKey: true,
-          autoIncrement: true
-     },
-     nombre: Sequelize.STRING(100),
-     url: Sequelize.STRING(100)
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  nombre: Sequelize.STRING(100),
+  url: Sequelize.STRING(100)
 }, {
-          hooks: {
-          beforeCreate(proyecto) {
-               const url = slug(proyecto.nombre).toLowerCase();
+  hooks: {
+    beforeCreate (proyecto) {
+      const url = slug(proyecto.nombre).toLowerCase()
 
-               proyecto.url = `${url}_${shortid.generate()}`
-          }
-     }
-     
-});
+      proyecto.url = `${url}_${shortid.generate()}`
+    }
+  }
 
-module.exports = Proyectos;
+})
+
+module.exports = Proyectos
